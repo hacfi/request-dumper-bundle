@@ -1,0 +1,8 @@
+services:
+    hacfi_request_dumper.controller.dump:
+        class: "hacfi\AwsBundle\EventListener\ResolveParametersListener"
+        arguments:
+            - ~
+            - ~
+            - ~
+            - ~

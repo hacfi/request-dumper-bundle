@@ -1,0 +1,22 @@
+{
+    "name": "hacfi/request-dumper-bundle",
+    "type": "symfony-bundle",
+    "description": "Request Dumper Bundle for Symfony",
+    "keywords": ["debugging", "logging"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name":"Philipp Wahala",
+            "email":"philipp.wahala@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "symfony/framework-bundle": "~2.2"
+    },
+    "autoload":{
+        "psr-4":{
+            "hacfi\\RequestDumperBundle\\": ""
+        }
+    }
+}
