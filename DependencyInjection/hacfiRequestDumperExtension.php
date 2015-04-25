@@ -55,6 +55,13 @@ class hacfiRequestDumperExtension extends ConfigurableExtension
         $loader->load('services.yml');
 
         $container
-            ->getDefinition('hacfi_request_dumper.controller.dump');
+            ->getDefinition('hacfi_request_dumper.controller.dump')
+            ->setArguments([
+                $mergedConfig['path'],
+                $mergedConfig['file_prefix'],
+                $mergedConfig['date_format'],
+                $mergedConfig['file_extension'],
+            ])
+        ;
     }
 }

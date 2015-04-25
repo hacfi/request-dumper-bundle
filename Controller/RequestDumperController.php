@@ -15,16 +15,25 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RequestDumperController
 {
-    private $alias;
+    protected $path;
+    protected $filePrefix;
+    protected $dateFormat;
+    protected $fileExtension;
 
     /**
      * Constructor.
      *
-     * @param string $alias
+     * @param string $path
+     * @param string $filePrefix
+     * @param string|bool $dateFormat
+     * @param string $fileExtension
      */
-    public function __construct()
+    public function __construct($path, $filePrefix, $dateFormat, $fileExtension)
     {
-        //$this->alias = $alias;
+        $this->path = $path;
+        $this->filePrefix = $filePrefix;
+        $this->dateFormat = $dateFormat;
+        $this->fileExtension = $fileExtension;
     }
 
     /**
@@ -32,7 +41,28 @@ class RequestDumperController
      */
     public function indexAction(Request $request)
     {
+        $logContent = (string) $request;
 
-        return new Response('OK');
+        $logFile = rtrim(
+            sprintf(
+                '%s/%s%s.%s',
+                rtrim($this->path, '/'),
+                $this->filePrefix,
+                $this->dateFormat ? date($this->dateFormat) : '',
+                $this->fileExtension
+            ),
+            ' .'
+        );
+
+        if (!is_dir($dir = dirname($logFile))) {
+            mkdir($dir, 0755, true);
+        }
+
+        file_put_contents(
+            $logFile,
+            $logContent
+        );
+
+        return new Response($logContent);
     }
 }

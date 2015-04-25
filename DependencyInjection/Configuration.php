@@ -41,7 +41,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('Y-m-d_H-i-s')
                 ->end()
                 ->scalarNode('file_extension')
-                    ->defaultValue('request_')
+                    ->defaultValue('log')
                 ->end()
                 ->scalarNode('file_prefix')
                     ->defaultValue('request_')
